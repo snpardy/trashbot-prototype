@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://trashbot_art/trashbot_smallcanvas.png" type="Texture" id=1]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Sprite
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+"
+
+[node name="Player" type="KinematicBody2D"]
+position = Vector2( 7.13115, 7.55968 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -0.177067, -0.0402756 )
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 1 )
+script = SubResource( 1 )
