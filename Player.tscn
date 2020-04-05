@@ -1,9 +1,46 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=17 format=2]
 
-[ext_resource path="res://trashbot_art/trashbot_smallcanvas.png" type="Texture" id=1]
+[ext_resource path="res://art/Player/p1_walk/PNG/p1_walk08.png" type="Texture" id=1]
+[ext_resource path="res://art/Player/p1_walk/PNG/p1_walk03.png" type="Texture" id=2]
+[ext_resource path="res://art/Player/p1_walk/PNG/p1_walk01.png" type="Texture" id=3]
+[ext_resource path="res://art/Player/p1_walk/PNG/p1_walk07.png" type="Texture" id=4]
+[ext_resource path="res://art/Player/p1_stand.png" type="Texture" id=5]
+[ext_resource path="res://art/Player/p1_walk/PNG/p1_walk11.png" type="Texture" id=6]
+[ext_resource path="res://art/Player/p1_walk/PNG/p1_walk09.png" type="Texture" id=7]
+[ext_resource path="res://art/Player/p1_jump.png" type="Texture" id=8]
+[ext_resource path="res://art/Player/p1_hurt.png" type="Texture" id=9]
+[ext_resource path="res://art/Player/p1_walk/PNG/p1_walk05.png" type="Texture" id=10]
+[ext_resource path="res://art/Player/p1_walk/PNG/p1_walk04.png" type="Texture" id=11]
+[ext_resource path="res://art/Player/p1_walk/PNG/p1_walk10.png" type="Texture" id=12]
+[ext_resource path="res://art/Player/p1_walk/PNG/p1_walk02.png" type="Texture" id=13]
+[ext_resource path="res://art/Player/p1_walk/PNG/p1_walk06.png" type="Texture" id=14]
 
-[sub_resource type="GDScript" id=1]
-script/source = "extends Sprite
+[sub_resource type="SpriteFrames" id=1]
+resource_local_to_scene = true
+animations = [ {
+"frames": [ ExtResource( 5 ) ],
+"loop": false,
+"name": "idle",
+"speed": 0.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 12 ), ExtResource( 1 ), ExtResource( 7 ), ExtResource( 4 ), ExtResource( 14 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 2 ), ExtResource( 13 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "run",
+"speed": 22.0
+}, {
+"frames": [ ExtResource( 9 ) ],
+"loop": false,
+"name": "fall",
+"speed": 0.0
+}, {
+"frames": [ ExtResource( 8 ) ],
+"loop": false,
+"name": "jump",
+"speed": 0.0
+} ]
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends AnimatedSprite
 
 
 # Declare member variables here. Examples:
@@ -24,8 +61,20 @@ func _ready():
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 7.13115, 7.55968 )
 
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( -0.177067, -0.0402756 )
-scale = Vector2( 0.1, 0.1 )
-texture = ExtResource( 1 )
-script = SubResource( 1 )
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0.868851, 0.440323 )
+scale = Vector2( 0.3, 0.3 )
+frames = SubResource( 1 )
+animation = "run"
+frame = 4
+script = SubResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( -0.519577, 0 )
+polygon = PoolVector2Array( -3.15179, -12.9413, -5.2301, -11.6188, -8.44202, -6.70641, -8.58372, -0.18809, -6.88329, 3.63788, -5.65521, 6.51917, -5.08839, 9.73109, -5.93861, 14.1239, -2.77392, 14.0294, -1.9237, 11.0064, 3.17759, 11.3843, 3.69717, 14.1239, 6.38951, 14.1711, 6.90909, 9.8728, 7.94825, 8.31406, 8.79846, 3.40171, 10.8295, 0.803828, 11.3963, -2.50256, 11.3491, -5.38385, 10.4517, -8.31237, 8.60952, -10.863, 6.10611, -12.4217, 2.65802, -13.5554, -0.412209, -13.6971 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+limit_bottom = 800
+drag_margin_h_enabled = true
+smoothing_enabled = true
